@@ -2,36 +2,48 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
-
+from selenium.webdriver.chrome.options import Options
 
 class TwitterBot:
     def __init__(self, username, password):
         self.username = username        
         self.password = password
-        self.bot = webdriver.Firefox()
+        #chrome_options = Options()
+        #chrome_options.add_argument("--headless")
+        #self.bot = webdriver.Chrome('/Users/rodionibragimov/Downloads/chromedriver', options=chrome_options)
+
+        #self.bot = webdriver.Firefox()
+
+        #chromedriver = '/Users/rodionibragimov/Downloads/chromedriver' #ur way to chromedriver
+        #self.bot = webdriver.Chrome(chromedriver)  #For Chrome users
 
     def login(self):
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        self.bot = webdriver.Chrome('/Users/rodionibragimov/Downloads/chromedriver', options=chrome_options)
         bot = self.bot
+
         bot.get('https://twitter.com')
-        isGetable = False
-        time.sleep(3)
+        #isGetable = False
+        time.sleep(5)
         
-        while (True):
-            try:
-                email = bot.find_element_by_name('session[username_or_email]')
-                password = bot.find_element_by_name('session[password]')
-                email.clear()
-                password.clear()
-                email.send_keys(self.username)
-                password.send_keys(self.password)
-                password.send_keys(Keys.RETURN)
-                isGetable = True
+        #while (True):
+            #try:
+        email = bot.find_element_by_name('session[username_or_email]')
+        password = bot.find_element_by_name('session[password]')
+        #email.clear()
+        #password.clear()
+        email.send_keys(self.username)
+        password.send_keys(self.password)
+        password.send_keys(Keys.RETURN)
+                #isGetable = True
             
-            except BaseException:
-                print('you gay')
+            #except BaseException:
+                #print('you gay')
+                #break
             
-            finally:
-                if (isGetable == True): break
+            #finally:
+                #if (isGetable == True): break
             
         
                 
@@ -40,6 +52,9 @@ class TwitterBot:
 
     def like_tweet(self, hashtag, TagFriend):
         time.sleep(3)
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        self.bot = webdriver.Chrome('/Users/rodionibragimov/Downloads/chromedriver', options=chrome_options)
         bot = self.bot
         self.TagFriend = TagFriend
         self.hashtag = hashtag
@@ -90,6 +105,6 @@ class TwitterBot:
                     time.sleep(10)
 
 
-rod = TwitterBot("your login", "your password")
+rod = TwitterBot("ur login", "ur password")
 rod.login()
 rod.like_tweet('giveaway', "      @og_seekg ")
