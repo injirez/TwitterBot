@@ -8,14 +8,17 @@ class TwitterBot:
     def __init__(self, username, password):
         self.username = username        
         self.password = password
-        #chrome_options = Options()
-        #chrome_options.add_argument("--headless")
-        #self.bot = webdriver.Chrome('/Users/rodionibragimov/Downloads/chromedriver', options=chrome_options)
+        #For not openning chrome
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        self.bot = webdriver.Chrome(r'C:\Users\chirik\OneDrive\Рабочий стол\Twitter\chromedriver.exe', options=chrome_options)
 
+        #For Firefox
         #self.bot = webdriver.Firefox()
 
-        #chromedriver = '/Users/rodionibragimov/Downloads/chromedriver' #ur way to chromedriver
-        #self.bot = webdriver.Chrome(chromedriver)  #For Chrome users
+        #For Chrome
+        #chromedriver = r'C:\Users\chirik\OneDrive\Рабочий стол\Twitter\chromedriver.exe' 
+        #self.bot = webdriver.Chrome(chromedriver) 
 
     def login(self):
         chrome_options = Options()
